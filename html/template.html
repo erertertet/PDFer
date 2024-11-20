@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+        }
+
+        .col {
+            flex: 1;
+            border: 1px solid cyan;
+            padding: 0px;
+            display: flex;
+            flex-basis: 0px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body style="margin: 0px;">
+    <div class="container">
+        <div class="col">
+            <img id="my-image" src="%s" alt="My Image">
+        </div>
+        <div class="col">
+            <div id="my-content" class="content">%s</div>
+        </div>
+        <div class="col row">
+            <textarea id="my-input" style="flex:1" oninput="updateContent()">%s</textarea>
+        </div>
+    </div>
+
+    <script>
+        function updateContent() {
+            var input = document.getElementById('my-input').value;
+            document.getElementById('my-content').innerHTML = input;
+        }
+    </script>
+</body>
+</html>
