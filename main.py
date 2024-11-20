@@ -1,4 +1,4 @@
-from nerif.agent import VisionAgent, MessageType
+from nerif.agent import VisionAgent, MessageType, SimpleChatAgent
 
 from PIL import Image
 import base64
@@ -18,11 +18,13 @@ def png_to_base64(filename):
 
 image = 'test.png'
 
-agent = VisionAgent()
-agent.append_message(MessageType.IMAGE_BASE64, png_to_base64(image))
-agent.append_message(MessageType.TEXT, 'recognize the text and response in formatted html')
+v_agent = VisionAgent()
+v_agent.append_message(MessageType.IMAGE_BASE64, png_to_base64(image))
+v_agent.append_message(MessageType.TEXT, 'recognize the text and response in formatted html')
+res = v_agent.chat()
 
-res = agent.chat()
+c_agent = SimpleChatAgent()
+res = c_agent.chat("only keep the content, remove header and style of the html: %s" % res)
 
 with open('out.html', 'w', encoding='utf-8') as file:
     with open('html/template.html') as temp:
