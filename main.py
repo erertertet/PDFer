@@ -24,7 +24,7 @@ v_agent.append_message(MessageType.TEXT, 'recognize the text and response in for
 res = v_agent.chat()
 
 c_agent = SimpleChatAgent()
-res = c_agent.chat("only keep the content, remove header and style of the html: %s" % res)
+res = c_agent.chat("only keep the content, remove header and style of the html, not to include ``` container, center formulae using text-align center: %s" % res)
 
 with open('out.html', 'w', encoding='utf-8') as file:
     with open('html/template.html') as temp:
