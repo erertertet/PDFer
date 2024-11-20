@@ -20,7 +20,7 @@ image = 'test.png'
 
 v_agent = VisionAgent()
 v_agent.append_message(MessageType.IMAGE_BASE64, png_to_base64(image))
-v_agent.append_message(MessageType.TEXT, 'recognize the text and response in formatted html')
+v_agent.append_message(MessageType.TEXT, 'recognize the text and response in formatted html, not to include the name of the book at the top')
 res = v_agent.chat()
 
 c_agent = SimpleChatAgent()
@@ -28,7 +28,7 @@ res = c_agent.chat("only keep the content, remove header and style of the html, 
 
 with open('out.html', 'w', encoding='utf-8') as file:
     with open('html/template.html') as temp:
-        s = temp.read() % (image, res, res)
+        s = temp.read() % (image, res)
         file.write(s)
 
 webbrowser.open('out.html')
